@@ -1,0 +1,26 @@
+{
+  "name": "team-profile",
+  "version": "1.0.0",
+  "description": "A program that takes information from the user and generates a website to act as a team profile page.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Winkler102/team-profile.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Winkler102/team-profile/issues"
+  },
+  "homepage": "https://github.com/Winkler102/team-profile#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "jest": "^26.6.3"
+  }
+}
