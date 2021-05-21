@@ -1,5 +1,10 @@
 const inquirer = require('inquirer');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Interm = require('./lib/Intern');
 const fs = require('fs');
+const Intern = require('./lib/Intern');
+let employeeRoster = [];
 let currentRole = 1;
 // role 1 = Manager | role 2 = Engineer | role 3 = Intern //
 
@@ -95,3 +100,35 @@ const employeeInput = [
         default: 2
     }
 ];
+
+const promptInput = () => {
+    inquirer
+        .prompt(employeeInput)
+        .then(newEmployee => {
+            switch (currentRole) {
+                case 1:
+                    employeeRoster.push(new Manager(newEmployee));
+                    break;
+                case 2:
+                    employeeRoster.push(new Engineer(newEmployee));
+                    break;
+                case 3:
+                    employeeRoster.push(new Intern(newEmployee));
+                    break;
+                default:
+                    break;
+            };
+            if (newEmployee.nextRole === 'Engineer') {
+                currentRole = 2;
+                promptInput();
+            } else if (newEmployee.nextRole === 'Intern') {
+                currentRole = 3;
+                promptInput();
+            } else {
+                console.log(employeeRoster);
+                return;
+            }
+        })
+};
+
+promptInput();
