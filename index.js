@@ -4,11 +4,12 @@ const constructHTML = require('./src/constructHTML');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const { cpuUsage } = require('process');
+let employeeRoster = [];
 let currentRole = 1;
 // role 1 = Manager | role 2 = Engineer | role 3 = Intern //
 
 const promptInput = () => {
-    let employeeRoster = [];
     return inquirer.prompt([
         {
             type: 'input',
@@ -101,38 +102,67 @@ const promptInput = () => {
             default: 2
         }
     ])
-        .then(newEmployee => {
-            switch (currentRole) {
-                case 1:
-                    employeeRoster.push(new Manager(newEmployee));
-                    break;
-                case 2:
-                    employeeRoster.push(new Engineer(newEmployee));
-                    break;
-                case 3:
-                    employeeRoster.push(new Intern(newEmployee));
-                    break;
-                default:
-                    break;
-            };
-            if (newEmployee.nextRole === 'Engineer') {
-                currentRole = 2;
-                promptInput();
-            } else if (newEmployee.nextRole === 'Intern') {
-                currentRole = 3;
-                promptInput();
-            } else {
-                return newEmployee;
-            }
-        });
 };
 
-promptInput()
-    .then(info => constructHTML(info))
-    .then(html => {
-        fs.writeFile('./dist/index.html', html, err => {
-            if (err) {
-                console.log(err)
+const pushArray = (object) => {
+    switch (currentRole) {
+        case 1:
+            employeeRoster.push(new Manager(object));
+            break;
+        case 2:
+            employeeRoster.push(new Engineer(object));
+            break;
+        case 3:
+            employeeRoster.push(new Intern(object));
+            break;
+        default:
+            break;
+    };
+};
+
+const selectNextRole = (role) => {
+    if (role.nextRole === 'Engineer') {
+        currentRole = 2;
+        return 2;
+    } else if (role.nextRole === 'Intern') {
+        currentRole = 3;
+        return 3;
+    } else {
+        return 4;
+    }
+};
+
+const makeHTMLFile = function (fileContent) {
+    fs.writeFile('./dist/index.html', fileContent, err => {
+        if (err) {
+            console.log(err)
+        }
+    });
+}
+
+const runPrompts = function () {
+    promptInput()
+        .then(input => {
+            pushArray(input);
+            return input;
+        })
+        .then(input => {
+            return selectNextRole(input);
+        })
+        .then(roleNumber => {
+            if (roleNumber === 4) {
+                return 4;
+            } else {
+                runPrompts();
             }
         })
-    });
+        .then(roleNumber => {
+            if (roleNumber === 4) {
+                fileContent = constructHTML(employeeRoster);
+                makeHTMLFile(fileContent);
+            };
+        });
+
+};
+
+runPrompts();

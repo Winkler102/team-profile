@@ -1,19 +1,43 @@
-const makeCards = (array) => {
-    return `
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-</div>
-`;
-}
+const makeCards = (objectArray) => {
+  cards = '';
+
+  objectArray.forEach(element => {
+    cards += `
+    <div class="card col-3 m-2">
+    <div class=" card-body">
+    ${element.getName()}
+    ${element.getRole()}
+    ${element.getID()}
+    `;
+    if (element.role === 'Engineer') {
+      cards += `
+      ${element.getGithub()}
+      <br>
+    `;
+    } else if (element.role === 'Intern') {
+      cards += `
+      ${element.getSchool()}
+
+    `;
+    } else {
+      cards += `
+            ${element.getOffice()}
+
+    `;
+    };
+    cards += `
+    ${element.getEmail()}
+    </div>
+    </div>
+    `;
+  });
+
+
+  return cards;
+};
 
 module.exports = constructHTML = (array) => {
-    return `
+  return `
     <!DOCTYPE html>
     <html lang="en">
   
@@ -29,8 +53,15 @@ module.exports = constructHTML = (array) => {
       <header class='p-3 bg-info'>
         <h1>The Team</h1>
       </header>
-        <main> 
-        </main>
+      <main>
+      <div class="container">
+          <div class="row">
+
+          ${makeCards(array)}
+
+          </div>
+        </div>
+      </main>
     </body>
     </html>
     `;

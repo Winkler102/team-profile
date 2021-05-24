@@ -17,6 +17,12 @@ test('creates Employee object', () => {
     expect(employee.role).toBe('Employee');
 });
 
+test("get employee's name", () => {
+    const employee = new Employee(mockInput);
+
+    expect(employee.getName()).toEqual(expect.any(String));
+});
+
 test("get employee's id as a number", () => {
     const employee = new Employee(mockInput);
 
