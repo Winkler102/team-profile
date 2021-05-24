@@ -11,8 +11,7 @@ const makeCards = (objectArray) => {
     `;
     if (element.role === 'Engineer') {
       cards += `
-      ${element.getGithub()}
-      <br>
+      <p>Github: ${element.getGithub()}</p>
     `;
     } else if (element.role === 'Intern') {
       cards += `
@@ -26,7 +25,7 @@ const makeCards = (objectArray) => {
     `;
     };
     cards += `
-    ${element.getEmail()}
+    <p> Email: ${element.getEmail()}</p>
     </div>
     </div>
     `;
