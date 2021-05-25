@@ -23,10 +23,10 @@ test("get employee's name", () => {
     expect(employee.getName()).toEqual(expect.any(String));
 });
 
-test("get employee's id as a number", () => {
+test("get employee's id as a string", () => {
     const employee = new Employee(mockInput);
 
-    expect(employee.getID()).toEqual(expect.any(Number));
+    expect(employee.getID()).toEqual(expect.any(String));
 });
 
 test("get employee's email as a string", () => {

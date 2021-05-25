@@ -18,10 +18,16 @@ test('creates engineer object', () => {
     expect(engineer.role).toBe('Engineer');
 });
 
-test("get engineer's id as a number", () => {
+test("get engineer's name", () => {
     const engineer = new Engineer(mockInput);
 
-    expect(engineer.getID()).toEqual(expect.any(Number));
+    expect(engineer.getName()).toEqual(expect.any(String));
+});
+
+test("get engineer's id as a string", () => {
+    const engineer = new Engineer(mockInput);
+
+    expect(engineer.getID()).toEqual(expect.any(String));
 });
 
 test("get engineer's email as a string", () => {

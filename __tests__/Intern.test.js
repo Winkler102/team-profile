@@ -18,10 +18,16 @@ test('creates intern object', () => {
     expect(intern.role).toBe('Intern');
 });
 
-test("get intern's id as a number", () => {
+test("get intern's name", () => {
     const intern = new Intern(mockInput);
 
-    expect(intern.getID()).toEqual(expect.any(Number));
+    expect(intern.getName()).toEqual(expect.any(String));
+});
+
+test("get intern's id as a string", () => {
+    const intern = new Intern(mockInput);
+
+    expect(intern.getID()).toEqual(expect.any(String));
 });
 
 test("get intern's email as a string", () => {
