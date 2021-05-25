@@ -21,9 +21,10 @@ Video link TBA.
 
 ## Usage 
 
-1. Run   .
->node index
-
+1. Run
+```
+node index
+```
 2. Follow prompts
 3. Get created HTML file from dist
 
