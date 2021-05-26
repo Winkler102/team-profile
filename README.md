@@ -12,11 +12,12 @@ If your README is very long, add a table of contents to make it easy for users t
 * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
+* [Questions?](#Questions?)
 
 
 ## Installation
 
-Video link TBA.
+   [Install Instruction Video](https://youtu.be/mf6EmvdJcso)
 
 
 ## Usage 
@@ -35,3 +36,8 @@ This a project for a bootcamp so please do not use without asking creator.
 ## Tests
 
 Example of completed HTML in dist under example.html
+
+## Questions?
+  Please contact through email.  
+  [GitHub](https://github.com/Winkler102)  
+  benjiwinkler@yahoo.com  
